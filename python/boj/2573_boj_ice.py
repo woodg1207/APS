@@ -14,19 +14,19 @@ def dfs(r, c):
         nr, nc = r+dr[i], c+dc[i]
         if 0<=nr<N and 0<=nc<M:
             if visit[nr][nc]: continue
-            elif arr[nr][nc]==0:
+            elif arr[nr][nc]<=0:
                 dfs(nr,nc)
             elif arr[nr][nc]:
-                arr[nr][nc]-=1
                 visit[nr][nc]=True
+                arr[nr][nc]-=1
 
 def dfs2(r, c):
     visit1[r][c]=True
     for i in range(4):
         nr, nc = r+dr[i], c+dc[i]
         if 0<=nr<N and 0<=nc<M:
-            if visit1[nr][nc]:continue
-            elif arr[nr][nc]!=0:
+            if visit1[nr][nc]: continue
+            elif arr[nr][nc]>0:
                 dfs2(nr,nc)
 
 while 1:
@@ -47,12 +47,9 @@ while 1:
                 break
         if flag:
             break
-    if cnt>1:
+    if flag:
         print(Y)
         break
     elif cnt == 0:
         print(0)
         break
-    # if Y>=10000:
-    #     print(0)
-    #     break
