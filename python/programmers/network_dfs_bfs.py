@@ -1,6 +1,4 @@
-
 def solution(n, computers):
-
     G = [[] for _ in range(n)]
     visit = [False]*n
     for i in range(n):
