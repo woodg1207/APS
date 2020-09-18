@@ -7,22 +7,22 @@ def solution(bridge_length, weight, truck_weights):
     time_total = 0
     bridge.append([truck.popleft(), 1])
     while bridge:
-        print(bridge, time_total)
         w = 0
         time_total += 1
         for i in range(len(bridge)):
-            w += bridge[i][1]
-        if len(truck)!=0 and w + truck[0] <= weight:
-            bridge.append([truck.popleft(), 1])
+            w += bridge[i][0]
+        if len(truck)!=0:
+            if w + truck[0] <= weight:
+                bridge.append([truck.popleft(), 1])
         for i in range(len(bridge)):
             bridge[i][1] += 1
-        if bridge[0][1]>=bridge_length:
+        if bridge[0][1]>bridge_length:
             bridge.popleft()
+        if len(truck)!=0:
+            if not bridge:
+                bridge.append([truck.popleft(),1])
+    return time_total+1
 
-
-
-    return time_total
-
-B, W = 2, 10
-T = [7, 4, 5, 6]
+B, W = 100, 100
+T = [10,10,10,10,10,10,10,10,10,10]
 print(solution(B, W, T))
