@@ -1,39 +1,44 @@
 import sys; sys.stdin=open('s16234.txt', 'r')
+from pprint import pprint
 
+import sys
+sys.setrecursionlimit(100000)
 N, L, R = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
 
 dr = [0, 1, 0, -1]
 dc = [1, 0, -1, 0]
 c = 0
-while(1):
-    union = []
+def dfs(r, c):
+    visit[r][c] = True
+    for i in range(4):
+        nr, nc = r+dr[i], c+dc[i]
+        if 0<=nr<N and 0<=nc<N:
+            if visit[nr][nc]:continue
+            if L<=abs(arr[r][c]-arr[nr][nc])<=R:
+                union.append([nr, nc])
+                dfs(nr, nc)
+while 1:
     visit = [[False]*N for _ in range(N)]
+    unions = []
+    union = []
     for i in range(N):
         for j in range(N):
-            for k in range(4):
-                nr, nc = i + dr[k], j + dc[k]
-                if 0<=nr<N and 0<=nc<N:
-                    if visit[nr][nc]:
-                        continue
-                    if L<=arr[i][j]-arr[nr][nc]<=R:
-                        visit[nr][nc]=True
-                        union.append([nr, nc])
-            print(visit, i, j)
-            print(union)
-    if len(union):
-        s = 0
-        for i, j in union:
-            s += arr[i][j]
-        result = s//len(union)
-        print(s, result)
-        for i, j in union:
-            arr[i][j]=result
-        print(arr)
+            if visit[i][j]: continue
+            dfs(i, j)
+            if len(union):
+                union.append([i, j])
+                unions.append(union)
+            union = []
+    if unions:
         c += 1
+        for union in unions:
+            value = 0
+
+            for j in union:
+                value+=arr[j[0]][j[1]]
+            for j in union:
+                arr[j[0]][j[1]] = value//len(union)
     else:
-        print(arr)
         print(c)
-        break
-    if c==4:
         break
