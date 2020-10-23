@@ -7,3 +7,6 @@ if t>time:
     print('t가 더큼{}'.format(t))
 else:
     print('time{}'.format(time))
+
+print(t.date)
+print(t.timestamp)
