@@ -15,7 +15,7 @@ def solution(encrypted_text, key, rotation):
         s = encrypted_text[rotation:] + encrypted_text[:rotation]
     else:
         rotation += len(key)
-        s =  encrypted_text[:rotation] +encrypted_text[rotation:]
+        s = encrypted_text[rotation:] + encrypted_text[:rotation]
     
     encrypted_text = s
     for i in range(len(key)):

@@ -10,11 +10,8 @@ def solution(n, delivery):
             if visit[delivery[i][0]]==1:
                 visit[delivery[i][1]] = 2
             elif visit[delivery[i][1]]==1:
-                visit[delivery[i][0]] = 2                                    
-            
-                
+                visit[delivery[i][0]] = 2                                                    
     result = ''
-    print(visit)
     for i in range(1, n+1):
         if visit[i] == 0:
             result += '?'
