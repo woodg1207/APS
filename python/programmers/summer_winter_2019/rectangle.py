@@ -3,19 +3,23 @@ def solution(w,h):
         w, h = h, w
     elif h==w:
         return h*w-h
-    def new_round(num):
-        if num == 0:
-            return 0 
-        if num % 1:
-            return num//1
+    def new_round(l, r):
+        if l%1:
+            nl = l//1 + 1
         else:
-            return num - 1
+            nl = l
+        if r%1:
+            nr = r//1
+        else:
+            nr = r - 1
+        return nr-nl + 2
+
     diag = w/h
     cnt = 0
     for i in range(h):
-        cnt += new_round(diag*(i+1))-new_round(diag*i) + 1
-        print(new_round(diag*(i+1)),new_round(diag*i), cnt)
+        cnt += new_round(diag*i,diag*(i+1))
+
     return h*w - cnt
 print(solution(8,12))
-# print(solution(5,2))
-# print(solution(500,2))
+print(solution(5,2))
+print(solution(500,2))
