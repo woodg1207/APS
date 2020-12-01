@@ -1,3 +1,5 @@
+package ch6;
+
 class Tv {
     // Tv의 속성( 멤버 변수 )
     String color;
