@@ -1,4 +1,4 @@
-package ch6;
+// package ch6; vscode 시작위치에 따라서 다름
 
 class Tv {
     // Tv의 속성( 멤버 변수 )
