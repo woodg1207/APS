@@ -16,8 +16,8 @@ class Tv {
 }
 public class TvTest {
     public static void main(String[] args) {
-        Tv t;
-        t= new Tv();
+        Tv t; //참조변수 t선언
+        t= new Tv(); // 인스턴스 생성
         t.channel = 7;
         t.channelDown();
         System.out.println("현재 채널은"+t.channel+"입니다.");
