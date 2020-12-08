@@ -27,6 +27,10 @@ public class TwoSum {
         // int[] testcase = 
         Solution tc = new Solution();
         System.out.println(tc.solution(testcase));
+        for (int i:tc.solution(testcase)){
+            System.out.printf("%d,",i);
+        }
+        System.out.println();
     }
 
 }
