@@ -10,3 +10,4 @@ for tc in range(tcs):
     for i in range(O):
         x, y, l = map(int, input().split())
         arr[x-1][y-1] = l
+    
