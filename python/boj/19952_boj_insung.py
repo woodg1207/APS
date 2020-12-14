@@ -5,21 +5,17 @@ def dfs(r, c, f):
     w = 0
     # print(r, c, f)
     if r==Re and c == Ce: return 1
+    if f<=0: return 0
     for i in range(4):
         nr, nc = r + dr[i], c + dc[i]
         if 0<=nr<H and 0<=nc<W:
-            nf = f
             if visit[nr][nc]: continue
-            if arr[r][c]<arr[nr][nc]:
-                nf -= arr[nr][nc]-arr[r][c]
-            else:
-                nf -= 1
-            if nf<0:continue
+            if arr[r][c]<arr[nr][nc]: # jump
+                if f < arr[nr][nc]-arr[r][c]: continue
             visit[nr][nc] = 1
-            w+=dfs(nr, nc, nf)
+            w+=dfs(nr, nc, f-1)
             visit[nr][nc] = 0
-            if w:
-                 return w
+            if w: return w
     return w
 tcs = int(input())
 dr = [0, 1, 0, -1]
