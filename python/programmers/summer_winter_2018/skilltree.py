@@ -10,18 +10,12 @@ def solution(skill, skill_trees):
     for i in range(len(skill)):
         priority[num_dict[skill[i]]] = i+1
     for skill_tree in skill_trees:
-        cnt = 0
-        flag = 0
+        cnt = 1
         for s in skill_tree:
             if priority[num_dict[s]]:
-                if priority[num_dict[s]] - cnt == 1:
+                if priority[num_dict[s]] == cnt:
                     cnt += 1
-                else:
-                    flag = 1
-            if flag:
-                break
-        if flag:
-            continue
+                else: break
         else:
             answer += 1
             
