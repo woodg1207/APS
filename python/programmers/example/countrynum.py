@@ -17,7 +17,7 @@ def solution(n):
                 pass
             else:
                 n -= pre
-                        
+    print(pre)            
                         
     return cnt 
 
