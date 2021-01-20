@@ -9,7 +9,8 @@ def solution(n):
         num = 3**cnt
         l += num
     if cnt == 1:
-        pass
+        if n == 3: return 4
+        else: return n
     else:
         for i in range(cnt):
             if i:
