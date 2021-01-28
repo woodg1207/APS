@@ -6,4 +6,6 @@ def solution(s):
     return len(s)
 
 print(solution('aabbaccc'))
+print(solution('ababcdcdababcdcd'))
+print(solution('abcabcdede'))
 print(solution('abcabcabcabcdededededede'))
