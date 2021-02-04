@@ -28,7 +28,7 @@ def delete(x, y, a, w):
             if not create_b(x+1, y, w):
                 return 0
         if w.get('{}{}{}'.format(x+1, y, 0)):
-            if not create_b(x+1, y, w):
+            if not create_p(x+1, y, w):
                 return 0
     else:
         if w.get('{}{}{}'.format(x+1,y+1,1)):
@@ -66,9 +66,11 @@ def solution(n, build_frame):
             if delete(x, y, a, wall):
                 wall['{}{}{}'.format(x, y, a)] = 0
             else:
+                print(wall, '@@')
                 wall['{}{}{}'.format(x, y, a)] = 1
-            # print(wall, (x, y, a), '##') 
+            print(wall, (x, y, a), '##') 
     return convert(wall)
+
 
 print(solution(5, [[1,0,0,1],[1,1,1,1],[2,1,0,1],[2,2,1,1],[5,0,0,1],[5,1,0,1],[4,2,1,1],[3,2,1,1]]))
 print(solution(5, [[0,0,0,1],[2,0,0,1],[4,0,0,1],[0,1,1,1],[1,1,1,1],[2,1,1,1],[3,1,1,1],[2,0,0,0],[1,1,1,0],[2,2,0,1]]))
