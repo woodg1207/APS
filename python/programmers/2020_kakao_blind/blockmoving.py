@@ -33,14 +33,16 @@ def solution(board):
         r = q.popleft()
         # print(r)
         # print(q)
-        if destinationCheck(r, N): break
+        if destinationCheck(r, N):
+            answer = r[-1]
+            break
         d = direction(r)
         for i in range(2):
             for j in range(4):
                 nr, nc = r[i][0]+dr[j], r[i][1]+dc[j]
                 if 0<=nr<N and 0<=nc<N:
                     if [nr, nc] == r[0] or [nr, nc] == r[1]: continue
-                    elif visit[nr][nc]: continue
+                    elif visit[r[i][0]][r[i][1]] and visit[nr][nc]: continue
                     elif board[nr][nc]: continue
                     if d:# 가로의 경우
                         if r[i][0]!=nr:
@@ -50,7 +52,7 @@ def solution(board):
                             if not spinCheck(r, [nr, nc], d, board): continue
                     q.append([r[i], [nr, nc], r[2]+1])
                     visit[nr][nc] = True
-    return r[2]
+    return answer
 
 
 print(solution([[0, 0, 0, 1, 1],[0, 0, 0, 1, 0],[0, 1, 0, 1, 1],[1, 1, 0, 0, 1],[0, 0, 0, 0, 0]]))
