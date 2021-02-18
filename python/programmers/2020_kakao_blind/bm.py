@@ -8,9 +8,9 @@ def direction(r):
 
 def spinCheck(r, n, d, b):
     if d: # 가로
-        if b[r[0][0]][n[1]] or b[r[1][0]][n[1]]: return 0
-    else:
         if b[n[0]][r[0][1]] or b[n[0]][r[1][1]]: return 0
+    else:
+        if b[r[0][0]][n[1]] or b[r[1][0]][n[1]]: return 0
     return 1
     
 def destinationCheck(r, n):
@@ -26,13 +26,15 @@ def solution(board):
     N = len(board)    
     visit = [[False for _ in range(N)] for _ in range(N)]
     robot = [[0,0], [0,1], 0]
-    visit[0][0], visit[0][1] = True, True 
+    # visit[0][0], visit[0][1] = True, True 
     q = deque()
     q.append(robot)
     while q:
         r = q.popleft()
         # print(r)
         # print(q)
+        for i in range(2):
+            visit[r[i][0]][r[i][1]] = True
         if destinationCheck(r, N):
             answer = r[-1]
             break
@@ -51,7 +53,10 @@ def solution(board):
                         if r[i][1] != nc:
                             if not spinCheck(r, [nr, nc], d, board): continue
                     q.append([r[i], [nr, nc], r[2]+1])
-                    visit[nr][nc] = True
+                    # visit[nr][nc] = True
+        for i in range(2):
+            visit[r[i][0]][r[i][1]] = False
+        
     return answer
 
 
