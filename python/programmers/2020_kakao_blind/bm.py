@@ -54,8 +54,6 @@ def solution(board):
                             if not spinCheck(r, [nr, nc], d, board): continue
                     q.append([r[i], [nr, nc], r[2]+1])
                     # visit[nr][nc] = True
-        for i in range(2):
-            visit[r[i][0]][r[i][1]] = False
         
     return answer
 
