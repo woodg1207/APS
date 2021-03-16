@@ -1,37 +1,48 @@
-from copy import deepcopy
+def convert(tickets, l):
+    answer = []
+    for i in l:
+        result = []
+        for idx in range(len(i)):
+            if idx:
+                result.append(tickets[i[idx]][1])
+            else:
+                result.extend(tickets[i[idx]])
+        answer.append(result) 
+    return answer
+    
 def solution(tickets):
-    tickets = sorted(tickets, key=lambda t : t[1])
     n = len(tickets)
-    x = []
-
-    def dfs(d, cnt, l):
-        if cnt == n:
-            l.append(d)
-            xx = deepcopy(l)
-            x.append(xx)
+    visit = [False for _ in range(n)]
+    result = []
+    def dfs(start, cnt):
+        if n == cnt:
+            result.append(l[:])
             return
-        
         for i in range(n):
             if visit[i]: continue
-            if d == tickets[i][0]:
+            if tickets[i][0] ==start:
                 visit[i] = True
-                l.append(d)
-                dfs(tickets[i][1], cnt + 1, l)
+                l.append(i)
+                dfs(tickets[i][1], cnt+1)
                 l.pop()
                 visit[i] = False
-
+    l = []
     for i in range(n):
         if tickets[i][0] == 'ICN':
-            visit = [False] * n
             visit[i] = True
-            dfs(tickets[i][-1], 1, ['ICN'])
-    return x[0]
+            l.append(i)
+            dfs(tickets[i][1], 1)
+            l.pop()
+            visit[i] = False
+    result = convert(tickets, result)
+    return sorted(result)[0]
+
 
 
 T = [['ICN' ,'B'], ['ICN', 'C'] ,['C', 'D'], ['D', 'ICN']]
-T = [['ICN', 'JFK'], ['HND', 'IAD'], ['JFK', 'HND']]
 T = [['ICN', 'A'], ['A', 'C'], ['A', 'D'], ['D', 'B'], ['B', 'A']]
-T = [['ICN', 'SFO'], ['ICN', 'ATL'], ['SFO', 'ATL'], ['ATL', 'ICN'], ['ATL','SFO']]
 T = [['ICN','A'],['ICN','A'],['A','ICN']]
 T = [["ICN","BOO"], ["ICN", "COO"], [ "COO", "DOO" ], ["DOO", "COO"], [ "BOO", "DOO"] ,["DOO", "BOO"], ["BOO", "ICN" ], ["COO", "BOO"]]
+T = [['ICN', 'JFK'], ['HND', 'IAD'], ['JFK', 'HND']]
+T = [['ICN', 'SFO'], ['ICN', 'ATL'], ['SFO', 'ATL'], ['ATL', 'ICN'], ['ATL','SFO']]
 print(solution(T))
