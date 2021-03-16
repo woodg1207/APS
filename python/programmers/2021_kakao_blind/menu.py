@@ -1,25 +1,36 @@
-abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-numToAbc = dict()
-abcToNum = dict()
-for i in range(len(abc)):
-    numToAbc[i] = abc[i]
-    abcToNum[abc[i]] = i
+from copy import deepcopy
+def comb(l, n):
+    result = []
+    def dfs(idx, n, cnt):
+        if cnt == n:
+            x = deepcopy(temp)
+            result.append(x)
+            return
+        for i in range(idx+1, len(l)):
+            temp.append(l[i])
+            dfs(i, n, cnt+1)
+            temp.pop()
+        return
 
-def comb(o, c, idx, cnt):
-    if c == cnt:
-        print(o[idx])
-        return [o[idx]]
-    r = [o[idx]]
-    for i in range(idx+1, len(o)):
-        r.extend(comb(o, c, i, cnt+1))
-        r.pop()
-    return r
+    for i in range(len(l)):
+        temp = [l[i]]
+        dfs(i, n, 1)
+    return result
 
-def convertNum(order):
-    r = []
-    for i in range(len(order)):
-        r.append(abcToNum[order[i]])
-    return sorted(r)
+def convert(order):
+    eng = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    try:
+        int(order[0])
+    except:
+        temp = []
+        for word in order:
+            temp.append(eng.index(word))
+        temp = sorted(temp)
+    else:
+        temp = ''
+        for i in order:
+            temp+=eng[i]
+    return temp
 
 def solution(orders, course):
     
@@ -27,13 +38,11 @@ def solution(orders, course):
     for l in course:
         sampleMenu = []
         for order in orders:
-            # order = convertNum(order)
+            order = convert(order)
             if l > len(order): continue
-            sampleMenu.append(comb(order, 3, 0, 1))
-            break
-        break
-    
-    return sampleMenu
+            sampleMenu.append(comb(order,l))
+        
+    return answer
 
 
 
