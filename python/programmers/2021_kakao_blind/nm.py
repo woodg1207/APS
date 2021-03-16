@@ -27,12 +27,12 @@
 # 			    ret.append([lst[i]]+temp)
 
 # 	return ret
-from copy import deepcopy
+from copy import deepcopy, copy
 def comb(l, n):
     result = []
     def dfs(idx, n, cnt):
         if cnt == n:
-            x = deepcopy(temp)
+            x = temp[:]
             result.append(x)
             return
         for i in range(idx+1, len(l)):
