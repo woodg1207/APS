@@ -1,11 +1,12 @@
+answer = 0
 def solution(numbers, target):
     n = len(numbers)
-    answer = []
     temp = 0
     def dfs(n, cnt, temp):
+        global answer
         if n==cnt:
             if temp == target:
-                answer.append(1)
+                answer += 1
             return
         for i in range(2):
             if i:
@@ -27,6 +28,6 @@ def solution(numbers, target):
             temp += numbers[0]
 
     
-    return len(answer)
+    return answer
 
 print(solution([1,1,1,1,1], 3))
