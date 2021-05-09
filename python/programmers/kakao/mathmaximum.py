@@ -75,6 +75,6 @@ exp = "100-200*300-500+20"
 print(solution(exp))
 
 # print(make_postfix([1,'-',3,'-',5,'*',5],('-','*')))
-print(make_postfix([1,'-',3,'*',5,'-',5],('-','+','*')))
-print(calcul(make_postfix([1,'-',3,'*',5,'-',5],('-','+','*'))))
-print(calcul([1,3,5,'*','-',5,'-']))
+# print(make_postfix([1,'-',3,'*',5,'-',5],('-','+','*')))
+# print(calcul(make_postfix([1,'-',3,'*',5,'-',5],('-','+','*'))))
+# print(calcul([1,3,5,'*','-',5,'-']))
