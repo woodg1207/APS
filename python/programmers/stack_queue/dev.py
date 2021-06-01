@@ -1,5 +1,4 @@
 from collections import deque
-
 def solution(progresses, speeds):
     answer = []
     n = len(progresses)
@@ -27,6 +26,23 @@ def solution(progresses, speeds):
             for i in range(cnt):
                 release.popleft()
             answer.append(cnt)
+    return answer
+
+def solution(progresses, speeds):
+    cursor = 0
+    answer = []
+    while cursor < len(progresses):
+        for i in range(cursor, len(progresses)):
+            progresses[i] += speeds[i]
+        if progresses[cursor]>=100:
+            cnt =0
+            for i in range(cursor, len(progresses)):
+                if progresses[i] >= 100:
+                    cnt += 1
+                else: break
+            if cnt:
+                cursor += cnt
+                answer.append(cnt)
     return answer
 
 
