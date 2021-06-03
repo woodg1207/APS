@@ -1,16 +1,29 @@
 def solution(n, lost, reserve):
-    cnt = 0
-    reserve = sorted(reserve)
-    for i in range(len(lost)):
-        flag = 0
-        for j in range(len(reserve)):
-            if -1 <= lost[i]-reserve[j] <= 1:
-                reserve.pop(j)
-                flag = 1
-                break
-        if flag:
+    res_lst = [False] * (n+1)    
+    res_lst2 = [False] * (n+1)    
+    lost.sort()
+    for i in reserve:
+        res_lst[i] = True
+        res_lst2[i] = True
+    cnt = n-len(lost)
+    cnt2 = n-len(lost)
+    while lost:
+        student = lost.pop()
+        if res_lst[student-1]:
+            res_lst[student-1] = False
             cnt += 1
-    return n-len(lost)+cnt
+        elif student!=n and res_lst[student+1]:
+            res_lst[student+1] = False
+            cnt += 1
+        if student!=n and res_lst2[student+1]:
+            res_lst2[student+1] = False
+            cnt2 += 1
+        elif res_lst2[student-1]:
+            res_lst2[student-1] = False
+            cnt2 += 1
+    if cnt>cnt2:
+        return cnt
+    return cnt2
 
 N = 5
 L = [2, 4]
